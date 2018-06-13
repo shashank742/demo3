@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>HTML</title>
+		<meta name="description" content="">
+		<meta name="author" content="sis191">
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<style>
+			.circle {
+	position: relative;
+	border: 1px solid black;
+	padding: 0;
+    margin: 1em auto;
+	width: 20em;
+    height: 20em;
+	border-radius: 50%;
+	list-style: none;
+    overflow: hidden;
+}
+li {
+	overflow: hidden;
+	position: absolute;
+	top: 0; right: 0;
+	width: 50%; height: 50%;
+	transform-origin: 0% 100%;      
+}
+.text {
+	position: absolute;
+	left: -100%;
+	width: 200%; height: 200%;
+	text-align: center;
+    -webkit-transform: skewY(60deg) rotate(15deg);
+    -ms-transform: skewY(60deg) rotate(15deg);
+    transform: skewY(60deg) rotate(15deg);
+    padding-top: 20px;
+}
+
+li:first-child {
+    -webkit-transform: rotate(0deg) skewY(-60deg);
+    -ms-transform: rotate(0deg) skewY(-60deg);
+	transform: rotate(0deg) skewY(-60deg);     
+}
+li:nth-child(2) {
+    -webkit-transform: rotate(30deg) skewY(-60deg);
+    -ms-transform: rotate(30deg) skewY(-60deg);
+	transform: rotate(30deg) skewY(-60deg);     
+}
+li:nth-child(3) {
+    -webkit-transform: rotate(60deg) skewY(-60deg);
+    -ms-transform: rotate(60deg) skewY(-60deg);
+	transform: rotate(60deg) skewY(-60deg);    
+}
+li:nth-child(4) {
+    -webkit-transform: rotate(90deg) skewY(-60deg);
+    -ms-transform: rotate(90deg) skewY(-60deg);
+	transform: rotate(90deg) skewY(-60deg);    
+}
+li:nth-child(5) {
+    -webkit-transform: rotate(120deg) skewY(-60deg);
+    -ms-transform: rotate(120deg) skewY(-60deg);
+	transform: rotate(120deg) skewY(-60deg);    
+}
+li:nth-child(6) {
+    -webkit-transform: rotate(150deg) skewY(-60deg);
+    -ms-transform: rotate(150deg) skewY(-60deg);
+	transform: rotate(150deg) skewY(-60deg);    
+}
+li:nth-child(7) {
+    -webkit-transform: rotate(180deg) skewY(-60deg);
+    -ms-transform: rotate(180deg) skewY(-60deg);
+	transform: rotate(180deg) skewY(-60deg);    
+}
+li:nth-child(8) {
+    -webkit-transform: rotate(210deg) skewY(-60deg);
+    -ms-transform: rotate(210deg) skewY(-60deg);
+	transform: rotate(210deg) skewY(-60deg);    
+}
+li:nth-child(9) {
+    -webkit-transform: rotate(240deg) skewY(-60deg);
+    -ms-transform: rotate(240deg) skewY(-60deg);
+	transform: rotate(240deg) skewY(-60deg);    
+}
+li:nth-child(10) {
+    -webkit-transform: rotate(270deg) skewY(-60deg);
+    -ms-transform: rotate(270deg) skewY(-60deg);
+	transform: rotate(270deg) skewY(-60deg);    
+}
+li:nth-child(11) {
+    -webkit-transform: rotate(300deg) skewY(-60deg);
+    -ms-transform: rotate(300deg) skewY(-60deg);
+	transform: rotate(300deg) skewY(-60deg);    
+}
+li:nth-child(12) {
+    -webkit-transform: rotate(330deg) skewY(-60deg);
+    -ms-transform: rotate(330deg) skewY(-60deg);
+	transform: rotate(330deg) skewY(-60deg);    
+}
+li:first-child .text {
+    background: green; 
+}
+li:nth-child(2) .text {
+	background: tomato; 
+}
+li:nth-child(3) .text {
+	background: aqua; 
+}
+li:nth-child(4) .text {
+	background: yellow;  
+}
+li:nth-child(5) .text {
+	background: orange;  
+}
+li:nth-child(6) .text {
+	background: purple;  
+}
+li:nth-child(7) .text {
+	background: cyan;  
+}
+li:nth-child(8) .text {
+	background: brown;  
+}
+li:nth-child(9) .text {
+	background: gray;  
+}
+li:nth-child(10) .text {
+	background: pink;  
+}
+li:nth-child(11) .text {
+	background: maroon;  
+}
+li:nth-child(12) .text {
+	background: gold;  
+}
+
+		</style>
+	</head>
+
+	<body>
+		<ul class="circle">
+	<li><div class="text">1</div></li>
+    <li><div class="text">2</div></li>
+    <li><div class="text">3</div></li>
+    <li><div class="text">4</div></li>
+    <li><div class="text">5</div></li>
+    <li><div class="text">6</div></li>
+    <li><div class="text">7</div></li>
+    <li><div class="text">8</div></li>
+    <li><div class="text">9</div></li>
+    <li><div class="text">10</div></li>
+    <li><div class="text">11</div></li>
+    <li><div class="text">12</div></li>
+
+<ul>
+	</body>
+</html>

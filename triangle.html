@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>HTML</title>
+		<meta name="description" content="">
+		<meta name="author" content="sis191">
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<style>
+.tri-wrap {
+	position:relative;
+  margin: 0 auto;
+  width:29em;
+  border-radius: 50%;
+  height:29em;
+  border:1px solid red;
+}
+
+/*.triangle-up {
+  float: left; 
+  width: 0px;
+  height: 0px;
+  
+  border-left: 5px solid transparent;
+  border-right: 100px solid transparent;
+  
+  border-bottom: 120px solid #d35400;
+}*/
+.triangle-down {
+  float: left; 
+  width: 0px;
+  height: 0px;
+  
+  border-left: 5px solid transparent;
+  border-right: 30px solid transparent;
+  
+  border-top: 110px solid #9b59b6;
+}
+
+
+
+.triangle-down:hover  {
+ border-top: 110px solid red;
+ color: black;
+}
+
+.triangle-down:hover > .tri-text-down {
+ display: block;
+ color: black;
+}
+
+/*.triangle-up:hover  {
+ border-bottom: 120px solid red;
+ color: black;
+}*/
+
+/*.triangle-up:hover > .tri-text-up {
+ display: block;
+ color: black;
+}*/
+
+.triangle-down{
+	position:absolute;
+}
+
+.tri-text-down {
+ margin: -5em -1.5em;
+ color: black;
+ display: none;
+}
+.tri-text-up {
+ margin: 3em -.65em;
+ color: black;
+ display: none;
+}
+.tri-last {
+  border-bottom: 120px solid blue;
+}
+.negativeM {
+  margin-left: 5em;
+}
+.rotate1{
+	top: 0px;
+transform: rotate(-5deg);
+left: 146px;
+}
+.rotate2{
+	top: 60px;
+right: 82px;
+transform: rotate(49deg);
+}
+.rotate3{
+	top: 200px;
+right: 39px;
+transform: rotate(97deg);
+}
+.rotate4{
+	top: 306px;
+right: 93px;
+transform: rotate(132deg);
+}
+.rotate5{
+	top: 76%;
+right: 48%;
+transform: rotate(175deg);
+}
+.rotate6{
+	top: 60%;
+right: 77%;
+transform: rotate(217deg);
+}
+.rotate7{
+	top: 34%;
+right: 84%;
+transform: rotate(265deg);
+}
+.rotate8{
+	top: 10%;
+right: 72%;
+transform: rotate(318deg);
+}
+			
+		</style>
+	</head>
+
+	<body>
+<div class="tri-wrap">
+  
+  <div class="triangle-down negativeM rotate1">
+   <div class="tri-text-down">triangle</div>
+  </div>
+  
+  <div class="triangle-down negativeM rotate2">
+    <div class="tri-text-down">triangle</div>
+  </div>
+  
+  <div class="triangle-down negativeM rotate3">
+   <div class="tri-text-down">triangle</div>
+  </div>
+   <div class="triangle-down negativeM rotate4">
+    <div class="tri-text-down">triangle</div>
+  </div>
+  
+  <div class="triangle-down negativeM rotate5">
+    <div class="tri-text-down">triangle</div>
+  </div>
+  
+  <div class="triangle-down negativeM rotate6">
+    <div class="tri-text-down">triangle</div>
+  </div>
+   <div class="triangle-down negativeM rotate7">
+    <div class="tri-text-down">triangle</div>
+  </div>
+  
+  <div class="triangle-down negativeM rotate8">
+    <div class="tri-text-down">triangle</div>
+  </div>
+  
+ 
+  
+</div>
+
+
+
+
+</body>
+</html>

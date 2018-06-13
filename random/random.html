@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<p id ="demo"></p>
+		<script>
+			$(document).ready(function() {
+				//var showImg = [1, 2, 3, 4, 5];
+				//var images = ["asstes/images/vedanta.png", "asstes/images/neeco.png", "asstes/images/mob.png", "asstes/images/logo.png", "asstes/images/logo6.png", "asstes/images/logo5.png", "asstes/images/logo4.png", "asstes/images/logo3.png", "asstes/images/logo2.png", "asstes/images/logo1.png", "asstes/images/client-img.png", "asstes/images/logo22.png", "asstes/images/logo33.png", "asstes/images/logo21.png", "asstes/images/logo20.png", "asstes/images/logo19.png", "asstes/images/logo18.png", "asstes/images/logo17.png", "asstes/images/logo16.png", "asstes/images/logo15.png", "asstes/images/logo14.png", "asstes/images/logo13.png", "asstes/images/logo12.png", "asstes/images/logo11.png", "asstes/images/logo10.png"];
+				//var i = 0;
+				//var showImgHold = [];
+				//var imagesHold = [];
+				//var showImgHoldstoreIndex = [];
+				//var j = 0;
+				var c = 0;
+				var bool = true;
+				var store = [1,5,3];
+				
+			function random() {
+						if (store.length > 0) {
+							bool = false;
+							callNo = Math.floor((Math.random() * 7) + 0);
+							for (var s = 0; s < store.length; s++) {
+								if (store[s] == callNo) {
+									bool = true;
+								}
+							}
+						}
+						if (bool) {
+							random();
+						} else {
+							if (store.length == 4) {
+							store.splice(0, 1);
+						}
+							store.push(callNo);
+							console.log(store);
+							console.log(store[3]+"   "+store.length)
+							
+						}
+						
+
+						c++;
+					}		
+				
+
+				// if (store.length == 0) {
+				// callNo = Math.floor((Math.random() * 7) + 0);
+					// store.push(callNo);
+				// }
+				setInterval(function() {
+
+					if (c == 4) {
+						c = 0;
+					}
+					random();
+					
+
+				}, 3000)
+
+			});
+		</script>
+	</body>
+</html>

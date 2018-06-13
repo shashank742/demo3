@@ -1,0 +1,649 @@
+(function($){
+var controller;
+$(window).on('load', gsapScrollPanels);
+function gsapScrollPanels() {
+	Wedifferents = new Wedifferent();
+	// Wedifferents.create_Slider_RepeaterAnimation();
+	//mouseWheelEvent()
+
+}
+
+
+$(document).ready(function() {
+	/**********************bannerAnimationEffect**************************/
+	var transitionInDelayTime = 30;
+	var transitionOutDelayTime = 30;
+	var transitionEffect = 'ease';
+	var clearServicePost;
+	//Slider
+	$(".slide-item").slick({
+		autoplay : true,
+		autoplaySpeed : 3000,
+		fade : true,
+		arrows : false,
+		slidesToShow : 1,
+		slidesToScroll : 1,
+		cssEase : 'linear',
+		speed : 1200,
+
+	});
+	$('.slide-item').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+		$('.banner-section').addClass('banner-section-active')
+	});
+
+
+	$('.slide-item').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+
+		layers = document.querySelectorAll(".animation");
+		//alert( layers.length)
+		for ( i = 0, len = layers.length; i < len; i++) {
+			layer = layers[i];
+			layer.style.width = "100%";
+			layer.style.transitionProperty = "width";
+			layer.style.mozTransitionProperty = "width";
+			layer.style.oTransitionProperty = "width";
+			layer.style.webkitTransitionProperty = "width";
+			// layer.style.transitionDelay=(i+1)* transitionInDelayTime+"ms";
+			layer.style.transitionDelay = (i + 1) * transitionInDelayTime + "ms";
+			layer.style.mozTransitionDelay = (i + 1) * transitionInDelayTime + "ms";
+			layer.style.oTransitionDelay = (i + 1) * transitionInDelayTime + "ms";
+			layer.style.webkitTransitionDelay = (i + 1) * transitionInDelayTime + "ms";
+			layer.style.transitionTimingFunction = transitionEffect;
+			layer.style.mozTransitionTimingFunction = transitionEffect;
+			layer.style.oTransitionTimingFunction = transitionEffect;
+			layer.style.webkitTransitionTimingFunction = transitionEffect;
+
+		}
+		//$('.animation').addClass('demo')
+	});
+	$('.slide-item').on('afterChange', function(event, slick, currentSlide, nextSlide) {
+
+		layers = document.querySelectorAll(".animation");
+		//alert( layers.length)
+		for ( i = 0, len = layers.length; i < len; i++) {
+			layer = layers[i];
+			layer.style.width = "0%";
+			layer.style.right = 0;
+			layer.style.transitionProperty = "width";
+			layer.style.mozTransitionProperty = "width";
+			layer.style.oTransitionProperty = "width";
+			layer.style.webkitTransitionProperty = "width";
+			layer.style.transitionDelay = (i + 1) * transitionOutDelayTime + "ms";
+			layer.style.mozTransitionDelay = (i + 1) * transitionOutDelayTime + "ms";
+			layer.style.oTransitionDelay = (i + 1) * transitionOutDelayTime + "ms";
+			layer.style.webkitTransitionDelay = (i + 1) * transitionOutDelayTime + "ms";
+			layer.style.transitionTimingFunction = transitionEffect;
+			layer.style.mozTransitionTimingFunction = transitionEffect;
+			layer.style.oTransitionTimingFunction = transitionEffect;
+			layer.style.webkitTransitionTimingFunction = transitionEffect;
+
+		}
+		// $('.animation').addClass('left')
+		setTimeout(function() {
+			$('.animation').removeAttr('style')
+		}, 2000);
+
+	});
+
+	var scrollMagicController = new ScrollMagic();
+
+	// Create Animation for 0.5s
+	// var tween = TweenMax.to('#animation', 0.5, {
+	// backgroundColor: 'rgb(255, 39, 46)',
+	// scale: 5,
+	// rotation: 360
+	// });
+	//
+	// // Create the Scene and trigger when visible
+	// var scene = new ScrollScene({
+	// triggerElement: '#scene',
+	// offset: 150 /* offset the trigger 150px below #scene's top */
+	// })
+	// .setTween(tween)
+	// .addTo(scrollMagicController);
+	//
+	// // Add debug indicators fixed on right side
+	// scene.addIndicators();
+
+	// var scene1 = new ScrollScene({
+	// triggerElement: '.empire-section',
+	// offset: 50
+	// })
+	// // .set('.empire-section', {className: '+=active'})
+	// .setClassToggle('.empire-section','active')
+	// // .setTween(tween1)
+	// .addTo(scrollMagicController)
+	// .addIndicators();
+	var spostFirst = document.getElementsByClassName('service-posts').item(0), spSecond = document.getElementsByClassName('service-posts').item(1), spThird = document.getElementsByClassName('service-posts').item(2);
+	spLast = document.getElementsByClassName('service-posts').item(3);
+	//
+	// var tween1 = TweenMax.to('.empire-section');
+	// var scene1 = new ScrollScene({
+	// triggerElement: '.empire-section',
+	// offset: 50
+	// })
+	// .setClassToggle('.empire-section', 'active')
+	// .setTween(tween1)
+	// .addTo(scrollMagicController).addIndicators();
+	//
+
+	/*******************************empire-section****************************/
+	controller = new ScrollMagic.Controller();
+
+	var scene = new ScrollMagic.Scene({
+		triggerElement : '.empire-section',
+		duration : document.getElementsByClassName('empire-section')[0].offsetTop,
+
+	})//.setClassToggle('.empire-section', 'active')// trigger a TweenMax.to tween
+	.addTo(controller);
+	scene.on("update", function(event) {
+		var detailListAnim = (event.endPos - event.startPos) / $('.details-listing').length;
+		var aviableScrollAmount = event.endPos - event.startPos;
+		var detailListoffset = event.startPos - window.innerHeight / 3;
+		$('.details-listing').each(function(index, obj) {
+			if (event.scrollPos > (detailListoffset + (detailListAnim * (index + 1)))) {
+				//    	 	console.log(index+" add")
+				$('.empire-section .details-listing').eq(index).addClass('active')
+			} else {
+				//console.log(index+" remove")
+				$('.empire-section .details-listing').eq(index).removeClass('active')
+			}
+		})
+	});
+
+	/*****************************our-service-section*******************************/
+	//var service_postsCtrl = new ScrollMagic.Controller();
+
+	var scene = new ScrollMagic.Scene({
+		triggerElement : '.our-service-section',
+		duration : document.getElementsByClassName('our-service-section')[0].offsetTop,
+		//onComplete:ourSectionComplete
+
+	})//.Class('.our-services .service-posts', 'our-services-active')// trigger a TweenMax.to tween
+	//	})// add indicators (requires plugin)
+	.addTo(controller);
+	// var setTimeInterval;
+	scene.on("enter", function(event) {
+		$('.our-services .service-posts').addClass('our-services-active');
+	});
+	scene.on("leave", function(event) {
+		$('body').addClass('stopScroll')
+	});
+	scene.on("update", function(event) {
+		//console.log(event)
+		//console.log($('.service-lsiting-content .our-services-new').height())
+		if (event.scrollPos > event.endPos) {
+			$('.service-lsiting-content .our-services-new').addClass('show');
+		} else {
+			$('.service-lsiting-content .our-services-new').removeClass('show');
+		}
+	});
+
+	// scene.on("leave", function (event) {
+	// $('.our-services .service-posts').removeClass('our-services-active')
+	// });
+	// service_postsActive=function(index){
+	// $('.our-services .service-posts').eq(index).addClass('our-services-active')
+	// setTimeInterval=setTimeout(function(){
+	// if(index!=$('.our-services .service-posts').length){
+	// service_postsActive(++index)
+	// }
+	// },1000);
+	// }
+
+	// var scene4 = new ScrollMagic.Scene({triggerElement: ".service-lsiting-content", duration:  "200%",offset:0,triggerHook :0.15})
+	// .setPin('.service-lsiting-content')
+	// //.addIndicators({name: "1 (duration: 300)",zindex: 1}) // add indicators (requires plugin)
+	// .addTo(controller);
+
+	//.setTween(introTl)
+
+	//scene3.addTo(controller)
+	//.setTween(scene3)
+
+	// .setTween(introTl)
+
+	// bodyOfWorkProjectReveal.pause(0);
+	// var scene3 = new ScrollMagic.Scene({triggerElement: ".our-services", duration:"100%",triggerHook :0.25})
+	// .setPin('.our-services')
+	// .addIndicators({name: "our-services",colorTrigger:"red",indent:100,colorStart:"#75C695",zindex: 1}) // add indicators (requires plugin)
+	// .addTo(controller)
+	// // .setTween(introTl)
+	// scene4.on("enter", function (event) {
+	//
+	// $('.service-posts').addClass('our-services-active')
+	//
+	//
+	// });
+
+	//.setTween(scene3)
+
+	// var scene = new ScrollMagic.Scene({
+	// triggerElement : spostFirst,
+	// duration:"300%",
+	// }).setClassToggle(spostFirst, 'active')// trigger a TweenMax.to tween
+	// //.addIndicators({
+	// //	name : "1 (duration: 0)"
+	// //	})// add indicators (requires plugin)
+	// .addTo(controller);
+
+	//var pinani = new TimelineMax();
+
+	// var scene = new ScrollMagic.Scene({
+	// triggerElement : '.our-services',
+	// offset:250,
+	// }).setPin(spostFirst).addIndicators({
+	// name : "2 (duration: 0)"
+	// })// add indicators (requires plugin)
+	// .addTo(controller)
+	// .setClassToggle(spostFirst, 'active')
+	// .setPin(spSecond).addIndicators({
+	// name : "2 (duration: 0)"
+	// })// add indicators (requires plugin)
+	// .addTo(controller)
+	// .setClassToggle(spSecond, 'active')
+
+	// .add(spSecond)
+
+	//
+	//
+
+	// var tween1 = TweenMax.to(spSecond);
+	// var scene1 = new ScrollScene({
+	// triggerElement: spSecond,
+	// // triggerHook : "onLeave",
+	//
+	// offset: 200
+	// })
+	// .setClassToggle(spSecond, 'active')
+	// .setTween(tween1)
+	// .addTo(scrollMagicController).addIndicators();
+	//
+	//
+	// var tween1 = TweenMax.to(spThird);
+	// var scene1 = new ScrollScene({
+	// triggerElement: spThird,
+	// // triggerHook : "onLeave",
+	//
+	// offset: 300
+	// })
+	// .setClassToggle(spThird, 'active')
+	// .setTween(tween1)
+	// .addTo(scrollMagicController).addIndicators();
+	//
+	// var tween1 = TweenMax.to(spLast);
+	// var scene1 = new ScrollScene({
+	// triggerElement: spLast,
+	// // triggerHook : "onLeave",
+	// // duration:"100%",
+	//
+	// offset: 400
+	// })
+	// .setClassToggle(spLast, 'active')
+	// .setTween(tween1)
+	// .addTo(scrollMagicController).addIndicators();
+	//
+	// // var controller1 = new ScrollMagic.Controller();
+	// //
+	// // // build scene
+	// // var scene3 = new ScrollMagic.Scene({triggerElement: ".service-posts",offset: 50})
+	// //
+	// // .setClassToggle('.service-posts','active')
+	// // .addTo(scrollMagicController)
+	// // //.setTween(TweenMax.to("#container1 .animated", 0.5, {backgroundColor: "green"}))
+	// // scene3.addIndicators() // add indicators (requires plugin)
+	// // //.setPin(".our-services .service-posts");
+
+	var tHeight = $('.see-how-different-slider .slider-repeater').outerHeight(true)
+	// var tween=[]
+	// $.each($('.see-how-different-slider .slider-repeater'),function(key,val){
+	// console.log(key)
+	// console.log($('.see-how-different-slider .slider-repeater').length)
+	// //triggerHook=(key==0)?0.5:0.5
+	// tween[1]=TweenMax.from($(this),1,{autoAlpha:0,ease:Linear.easeNone,onStart:onStart,onUpdate:onUpdate});
+	//
+	//
+	// })
+	// var scene=new  ScrollMagic.Scene({
+	// triggerElement:'.see-how-different-slider',
+	// triggerHook:1,
+	// duration:"400%",
+	// offset:0
+	//
+	// })
+	// .setPin('.see-how-different-slider')
+	// .setTween(tween)
+	// //.setClassToggle(".slider-repeater:nth-child("+(key+1)+")", "active-slider-repeater")
+	// .addTo(controller)
+	// .addIndicators({name:  " (duration: 300)",zindex: 1})
+
+	// var i= (new TimelineMax).add([TweenMax.fromTo("#slider-repeater_1", 1, {
+	// opacity:1,
+	// y : "0"
+	// }, {
+	// opacity:0,
+	// y : "-50%",
+	// ease : Power1.easeIn
+	// })]).add([TweenMax.fromTo("#slider-repeater_2", 1, {
+	// opacity:0,
+	// y : "50%"
+	// }, {
+	// y : "0%",
+	// opacity:1,
+	// ease : Power1.easeIn
+	// })]).add([TweenMax.fromTo("#slider-repeater_2", 1, {
+	// opacity:1,
+	// y : "0"
+	// }, {
+	// y : "-50%",
+	// opacity:0,
+	// ease : Power1.easeIn
+	// })]).add([TweenMax.fromTo("#slider-repeater_3", 1, {
+	// opacity:0,
+	// y : "50%"
+	// }, {
+	// y : "0%",
+	// opacity:1,
+	// ease : Power1.easeIn
+	// })]).add([TweenMax.fromTo("#slider-repeater_3", 1, {
+	// opacity:1,
+	// y : "0"
+	// }, {
+	// y : "-50%",
+	// opacity:0,
+	// ease : Power1.easeIn
+	// })]).add([TweenMax.fromTo("#slider-repeater_4", 1, {
+	// opacity:0,
+	// y : "50%"
+	// }, {
+	// y : "0%",
+	// opacity:1,
+	// ease : Power1.easeIn
+	// })]);
+
+	function ondemo() {
+		//console.log('demo')
+	}
+
+	function onStart(e) {
+		// var thiss=this
+		// console.log(this)
+		// console.log(JSON.stringify(thiss))
+
+		//$('.active-slider-repeater').removeClass('active-slider-repeater');
+
+		$(this).addClass('active');
+	}
+
+	function onUpdate() {
+		//console.log('onLeave')
+	}
+
+	/*************************service-lsiting-content starting************************/
+	//var controller = new ScrollMagic.Controller();
+	// $(".service-scroll-content").not($('.related-services > div').eq(0)).width((window.innerWidth / 2) / 3);
+	// //var oneContentDivWidth = (window.innerWidth / 4);
+	// $(".service-scroll-content:first-child").width(($('.our-service-section').outerWidth(true) / 2));
+	// $winHalfWidth = $('.our-service-section').outerWidth(true) / 2;
+	// $dummySecContainerOffsetTop = $('.related-services').offset().top;
+	// var contentDivOuterWidth = $(".service-scroll-content").outerWidth(true);
+	// var contentDivTLen = $(".service-scroll-content").length;
+	// //console.log(contentDivOuterWidth + "  " + contentDivTLen)
+	// var $winWidth = $('.our-service-section').outerWidth(true);
+	// $(".service-scroll-content").parent().width((contentDivOuterWidth * contentDivTLen) + 120);
+// 
+	// var dummySection_4Duration = (contentDivOuterWidth * contentDivTLen) - $winWidth;
+	// var elem = $(".dummySection_3");
+	// var related_services = new TimelineMax();
+	// var tween = []
+	// var maxWidth = 0;
+	// $('.service-scroll-content').each(function(key) {
+		// $(this).css({
+			// 'right' : ((window.outerWidth / 2) / 3) * ($(this).siblings().length - key),
+			// 'width' : (key == 0) ? ($('.our-service-section').outerWidth(true) / 2) : (($('.our-service-section').outerWidth(true) / 2) / 3)
+		// })
+		// tween.push($(this).innerWidth(true))
+		// maxWidth += ($('.our-service-section').outerWidth(true) / 2)
+// 
+	// });
+// 
+	// related_services.to(".related-services", 1, {
+		// autoAlpha : 1,
+		// x : -1500,
+		// ease : Power0.easeNone,
+		// className : "+=active"
+	// })
+// 
+	// var related_service_listing = new TimelineLite()
+	// var tl1Prog = {
+		// widthed : 0
+	// };
+	// for ( i = 2; i <= document.querySelectorAll('.service-scroll-content').length; i++) {
+		// related_service_listing.to('.service-scroll-content:nth-child(' + (i) + ')', 0.2, {
+			// width : $winHalfWidth,
+			// widthed : 1,
+			// ease : Power0.easeNone,
+			// onUpdate : service_scroll_contentUpdate,
+			// onStart : service_scroll_contentOnStart,
+			// onComplete : service_scroll_contentonComplete,
+			// className : '+=newclass active',
+			// onCompleteParams : [(i)]
+		// })
+	// }
+	// var service_listing_content = new ScrollMagic.Scene({
+		// triggerElement : ".service-lsiting-content",
+		// duration : 3200, //"1000%"
+		// triggerHook : 0,
+// 
+	// }).setPin('.service-lsiting-content').setClassToggle('.service-lsiting-content', 'activeScroll')
+	// // .addIndicators({
+	// // name : "service-lsiting-content",
+	// // colorTrigger : "red",
+	// // indent : 100,
+	// // colorStart : "#75C695",
+	// // zindex : 1
+	// // })
+// 
+	// .addTo(controller).setTween([related_services, related_service_listing]);
+	// service_listing_content.on("leave", function(event) {
+		// $('body').removeClass('stopScroll')
+	// });
+	// service_listing_content.on("end", function(event) {
+// 
+	// });
+// 
+	// function service_scroll_contentOnStart() {
+		// //alert('start')
+		// $('.service-lsiting-content').addClass('activeScroll');
+	// }
+// 
+	// function service_scroll_contentonComplete(currentView) {
+		// if (currentView == document.querySelectorAll('.service-scroll-content').length) {
+			// console.log(Math.round($('body').find('.home-video-section').offset().top))
+			// // TweenMax.to(window, 1.2, {
+				// // scrollTo : {
+					// // y : Math.round($('body').find('.home-video-section').offset().top)
+				// // },
+				// // ease : Quad.easeInOut
+			// // });
+             // $('html , body').animate({
+             	// scrollTop:$('body').find('.home-video-section').offset().top
+             // },1000)
+// 
+		// }
+// 
+	// }
+// 
+// 
+	// service_listing_content.on("update", function() {
+		// // $('.service-lsiting-content').addClass('activeScroll');
+	// });
+	// service_listing_content.on("leave", function() {
+		// //alert('end')
+		// $('.service-lsiting-content').removeClass('activeScroll');
+		// // $('.service-lsiting-content .our-services-new').removeClass('show');
+		// $('.service-lsiting-content .our-services-new').find('.service-posts:first-child').addClass('our-services-active');
+	// })
+	// function service_scroll_contentUpdate(params) {
+	// 	//console.log()
+	// 	$('.service-lsiting-content .our-services-new').css({
+	// 		"display" : "block"
+	// 	})
+	// 	for ( i = $('.newclass').length; i > 0; i--) {
+	// 		$('.service-scroll-content').eq(i - 1).css({
+	// 			'right' : (parseInt($('.service-scroll-content').eq(i).outerWidth(true)) + parseInt($('.service-scroll-content').eq(i).css('right')) + 1)
+	// 		});
+	// 	};
+	// 	for ( j = $('.service-scroll-content').length; j > $('.newclass').length - 1; j--) {
+	// 		fromRight = (j == $('.service-scroll-content').length) ? 0 : (parseInt($('.service-scroll-content').eq(j + 1).outerWidth(true)) + parseInt($('.service-scroll-content').eq(j + 1).css('right')))
+	// 		$('.service-scroll-content').eq(j).css({
+	// 			'right' : fromRight
+	// 		});
+	// 	};
+	// 	clearInterval(clearServicePost)
+	// 	clearServicePost = setTimeout(function() {
+	// 		// console.log(parseInt($('.newclass').eq($('.newclass').length-1).attr('related-services')))
+	// 		$('.our-services-new .service-posts').eq(parseInt($('.newclass').eq($('.newclass').length - 1).attr('related-services'))).addClass('our-services-active').prevAll().removeClass('our-services-active');
+	// 		$('.our-services-new .service-posts').eq(parseInt($('.newclass').eq($('.newclass').length - 1).attr('related-services'))).nextAll().removeClass('our-services-active');
+    //
+	// 	}, 50)
+	// }
+
+
+	/********************************service-lsiting-content ending**********************************/
+
+	/*****************************see-how-different-slider Starting**************************/
+	// var see_how_different_sliderCtrl = new ScrollMagic.Controller();
+	// var see_how_different_slider = new TimelineMax();
+	// see_how_different_slider.to(".see-how-different-slider", 1, {
+	// autoAlpha : 1,
+	// x : -1300,
+	// ease : Power0.easeNone,
+	// className : "+=active"
+	// })
+	// var slider_repeater = new TimelineLite();
+	//
+	// slider_repeater.from('.slider-repeater:nth-child(1)', 0.2, {
+	// opacity : 0,
+	// widthed : 1,
+	// ease : Power0.easeNone,
+	// y :-100,
+	// className : '+=newclass active'
+	// })
+	//
+	// var see_how_we_different = new ScrollMagic.Scene({
+	// triggerElement : ".see-how-we-different",
+	// duration : 3200, //"1000%"
+	// triggerHook : 0
+	// }).setPin('.see-how-we-different')
+	// .addIndicators({
+	// name : "see-how-we-different",
+	// colorTrigger : "red",
+	// indent : 100,
+	// colorStart : "#75C695",
+	// zindex : 1
+	// })
+	//
+	//
+	// .addTo(see_how_different_sliderCtrl).setTween([see_how_different_slider, slider_repeater]);
+
+	/****************************see-how-different-slider Ending***************************/
+
+	// $('body').on('DOMMouseScroll mousewheel','.see-how-we-different', function (e) {
+	//     //alert()
+	//     console.log('demo')
+	//     e.preventDefault();
+	//     console.log('demo2')
+	//     if(e.originalEvent.detail > 0 || e.originalEvent.wheelDelta < 0) { //alternative options for wheelData: wheelDeltaX & wheelDeltaY
+	//         //scroll down to box#3
+	//         //TweenLite.to(window, 0.8, {scrollTo:".slider-repeater:nth-child(2)", ease:Power4.easeInOut});
+	//         //  console.log('Down to box#3');
+	//     } else {
+	//         //scroll up to box#1
+	//         //TweenLite.to(window, 0.8, {scrollTo:"#box1", ease:Power4.easeInOut});
+	//         // console.log('Up to box#1');
+	//     }
+	//     //prevent page fom natively scrolling
+	//     return false;
+	// });
+
+});
+
+$(window).load(function() {
+	setTimeout(function(){
+		$('.banner-section').addClass('banner-section-active');	
+	},100);
+	
+	//video section
+	$('.home-video-section .video-content .video-play-button').click(function() {
+		$('.home-video-section .video-popup-section').fadeIn(500);
+	});
+	$('.home-video-section .video-popup-section span.cross').click(function() {
+		$('.home-video-section .video-popup-section').fadeOut(500);
+	});
+	//	gsapScrollPanel()
+})
+// $('body').on('DOMMouseScroll mousewheel','.see-how-we-different', function (e) {
+// 	//alert()
+//     console.log('demo')
+// 	e.preventDefault();
+// 	console.log('demo2')
+//   if(e.originalEvent.detail > 0 || e.originalEvent.wheelDelta < 0) { //alternative options for wheelData: wheelDeltaX & wheelDeltaY
+//     //scroll down to box#3
+//     //TweenLite.to(window, 0.8, {scrollTo:".slider-repeater:nth-child(2)", ease:Power4.easeInOut});
+//   //  console.log('Down to box#3');
+//   } else {
+//     //scroll up to box#1
+//     //TweenLite.to(window, 0.8, {scrollTo:"#box1", ease:Power4.easeInOut});
+//    // console.log('Up to box#1');
+//   }
+//   //prevent page fom natively scrolling
+//   return false;
+// });
+//
+
+    // var translate3d = 'translate3d(0, ' + (-document.querySelector('.video-sec-content').clientHeight) + 'px, 0)';
+    // var videoSecContent=document.querySelector('.video-sec-content');
+    // layers.style['-webkit-transform'] = translate3d;
+    // layers.style['-moz-transform'] = translate3d;
+    // layers.style['-ms-transform'] = translate3d;
+    // layers.style['-o-transform'] = translate3d;
+    // layers.style.transform = translate3d;
+    var clearTimeOut;
+    window.addEventListener('scroll', function(event) {
+       //  var depth, i, layer, layers, len, movement, topDistance, translate3d;
+       // topDistance = this.pageYOffset;
+       // // console.log(topDistance);
+       // //if(status==true){
+       //  var layers = document.querySelector('.video-content video');
+       //  clearTimeout(clearTimeOut)
+       //  clearTimeOut=setTimeout(function(){
+       // // console.log(((document.querySelector('.video-content').offsetTop) < window.scrollY));
+       // // console.log(((document.querySelector('.video-content').clientHeight+window.innerHeight) > window.scrollY))
+       //      console.log(((document.querySelector('.video-content').offsetTop) < window.scrollY) &&((document.querySelector('.video-content').offsetTop+window.innerHeight) > window.scrollY))
+		//    if((document.querySelector('.video-content').offsetTop) < window.scrollY &&(document.querySelector('.video-content').offsetTop+window.innerHeight > window.scrollY)){
+       //        var dd= window.scrollY-document.querySelector('.video-content').offsetTop
+       //         console.log(dd)
+       //         var videoContentHeight=document.querySelector('.video-sec-content').clientHeight/(document.querySelector('.video-content').clientHeight-document.querySelector('.video-sec-content').clientHeight);
+       //         console.log(videoContentHeight*dd)
+       //
+       //        //  window.innerHeight
+       //
+       //          depth = document.querySelector('.video-content').getAttribute('data-depth');
+       //          movement = -(topDistance * 0.02);
+       //          translate3d = 'translate3d(0, ' + movement + 'px, 0)';
+       // }
+       // else{
+       //         //translate3d = 'translate3d(0, ' + 0 + 'px, 0)';
+       //     }
+       //
+       //      layers.style['-webkit-transform'] = translate3d;
+       //      layers.style['-moz-transform'] = translate3d;
+       //      layers.style['-ms-transform'] = translate3d;
+       //      layers.style['-o-transform'] = translate3d;
+       //      layers.style.transform = translate3d;
+       //  },80);
+    });
+
+
+})(jQuery);

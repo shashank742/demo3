@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Listing markers in clusters</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/leaflet.markercluster.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css' rel='stylesheet' />
+<style>
+.ui-coordinates {
+  background:rgba(0,0,0,0.5);
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  padding:0px 5px;
+  color:#fff;
+  font-size:11px;
+  line-height:18px;
+  border-radius:3px;
+  max-height:240px;
+  overflow:auto;  
+  width:300px;
+  } 
+  #status {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fff;
+    width: 150px;
+    padding:5px;
+}
+#type{
+	 position: absolute;
+    top: 0;
+    right: 165px;
+    background: #fff;
+    width: 150px;
+    padding:5px;
+	}
+	#map{
+		width:1200px;
+	}
+	.container{
+		position:relative;
+		
+		width:100%;
+	}
+</style>
+<div class="container">
+<div id='map'></div>
+<pre id='coordinates' class='ui-coordinates'></pre>
+<form id='status'>
+  <div><input type='radio' name='filters' onclick='showStations();' value='all' checked> all</div>
+   <div><input type='radio' name='filters' onclick='showStations();' value='red' > red</div>
+  <div><input type='radio' name='filters' onclick='showStations();' value='green' > green</div>
+  <div><input type='radio' name='filters' onclick='showStations();' value='orange' > orange</div>
+  <div><input type='radio' name='filters' onclick='showStations();' value='yellow' > yellow</div>
+  <div><input type='radio' name='filters' onclick='showStations();' value='blue' > blue</div>
+</form>
+<form id='type'>
+  <div><input type='radio' name='filters' onclick='showStations();' value='all' checked> all</div>
+  <div><input type='radio' name='filters' onclick='showStations();' value='unknown' > unknown</div> 
+  <div><input type='radio' name='filters' onclick='showStations();' value='known' > known</div> 
+</form>
+</div>
+ <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script>
+$(".container").height($(window).height())
+L.mapbox.accessToken = 'pk.eyJ1IjoianRob21hc3NpZSIsImEiOiJHaUxIakJNIn0.-YMjtvwXuWt_ZwB9L5ZZYA';
+var map = L.mapbox.map('map')
+   .setView([38.9, -77], 13).addLayer(L.mapbox.tileLayer('mapbox.streets'));
+ 
+    
+var markers = new L.MarkerClusterGroup();
+var overlays = L.layerGroup().addTo(map);
+var layers;
+var myLayer =  L.mapbox.featureLayer()
+    .loadURL('assets/json/mapfilter2.json')
+    .on('ready', function(e) {
+    	
+        layers = e.target;
+        showStations();
+          
+          // map.addLayer(clusterGroup);
+        
+    })
+    .on('click', function (e) {	
+			 map.panTo(e.layer.getLatLng());
+		//console.log($(this))
+	
+		
+			 })
+			 .on('focus', function (e) {	
+			alert(1)
+		//console.log($(this))
+	
+		
+			 })
+
+   var holdTitle;
+   var removeTitle;
+   var holdSrc;
+    map.on('popupclose',function(e){
+		holdTitle	= $(".leaflet-popup-content").find("strong").text();
+		//console.log($(".leaflet-popup-content").find("strong").attr("data_src_small"))
+		$("img.leaflet-marker-icon").removeClass("active")
+			$("img.leaflet-marker-icon[title ='"+ holdTitle +"' ]").attr("src",$(".leaflet-popup-content").find("strong").attr("data_src_small"));
+
+		 })
+		 map.on('popupopen',function(e){
+		//console.log($(".leaflet-popup-content").find("strong").attr("data_src_small"))
+		 removeTitle = $(".leaflet-popup-content").find("strong").text();
+		 var storTitle = removeTitle;
+        removeTitle =	removeTitle.replace(holdTitle,"");	
+        if(removeTitle == ""){
+        	removeTitle = storTitle;
+        }		
+			//console.log(removeTitle)	
+			$("img.leaflet-marker-icon[title ='"+ removeTitle +"' ]").siblings().removeClass("active");
+			$("img.leaflet-marker-icon[title ='"+ removeTitle +"' ]").addClass("active").attr("src",$(".leaflet-popup-content").find("strong").attr("data_src_big"));		
+		 })
+		 
+		 $("body").on("click","#map", function(e) {
+		
+		
+       	if($(e.target).attr('id')=="map"){
+
+       	}
+     });
+     
+$("body").on("click",".leaflet-marker-icon",function(){
+	
+})
+     
+		 $("body").on("click",".address_list",function(e){
+		 	 $(this).addClass("active").siblings().removeClass("active");
+		 	 alert()
+		 	$("img.leaflet-marker-icon[title ='"+ $(this).text() +"' ]").trigger("click");
+		 	
+		
+		 })
+    myLayer.on('layeradd', function(e) {
+  var marker = e.layer,
+    feature = marker.feature;
+  marker.setIcon(L.icon(feature.properties.icon));
+  var content = '<p><strong data_src_big = "' + feature.properties.icon.iconUrlHover + '"data_src_small = "' + feature.properties.icon.iconUrl + '">' + feature.properties.title + '</strong></p><img src="' + feature.properties.image + '" alt="">';
+  marker.bindPopup(content);
+});
+    
+var filters = document.getElementById('status').filters;
+var filters2 = document.getElementById('type').filters;
+
+function showStations() {
+	 myLayer =  L.mapbox.featureLayer()
+    .loadURL('assets/json/mapfilter.json').on('ready', function(e) {    	
+        layers = e.target;                
+          // map.addLayer(clusterGroup);        
+    })
+     myLayer.on('layeradd', function(e) {
+   marker = e.layer,
+    feature = marker.feature;
+  marker.setIcon(L.icon(feature.properties.icon));
+   content = '<p><strong>' + feature.properties.title + '</strong></p><img src="' + feature.properties.image + '" alt="">';
+  marker.bindPopup(content);
+});
+    
+    
+    var list = [];
+   
+    for (var i = 0; i < filters.length; i++) {    	
+       if (filters[i].checked) list.push(filters[i].value);       
+    }
+    
+     for (var i = 0; i < filters2.length; i++) {    	
+       if (filters2[i].checked) list.push(filters2[i].value);      
+    }   
+    overlays.clearLayers();     
+    markers.clearLayers(); 
+    var clusterGroup = new L.MarkerClusterGroup({
+    	iconCreateFunction: function(cluster) {
+        return L.mapbox.marker.icon({
+          // show the number of markers in the cluster on the icon.
+          'marker-symbol': cluster.getChildCount(),
+          'marker-color': '#ffffff'
+        });
+      }
+    }).addTo(overlays);
+    
+    
+    layers.eachLayer(function(layer) {	 
+        // if (list.indexOf(layer.feature.properties.type) !== -1 && list.indexOf(layer.feature.properties.status) !== -1) {  
+        	 var title = layer.feature.properties.title;
+        	//var imgSrc = layer.feature.properties.icon.iconUrl;
+        	
+    	 var marker = L.marker(new L.LatLng(layer._latlng.lat, layer._latlng.lng),{
+    	 	//icon: L.mapbox.marker.icon({'marker-symbol': 'post', 'marker-color': '0044FF'}),
+    	 
+        title: title
+    	 });      
+    	
+    	  markers.addLayer(marker);   
+    	    clusterGroup.addLayer(layer);   	
+           // clusterGroup.addLayer(marker);
+            
+           //		$("body").find("img.leaflet-marker-icon").css({"height":"auto","width":"auto"});
+        // }  
+             
+       onmove()
+    });  
+}
+ 	
+function onmove() {
+    var inBounds = [],
+        bounds = map.getBounds();
+    markers.eachLayer(function(marker) {
+        if (bounds.contains(marker.getLatLng())) {        	
+            inBounds.push(marker.options.title);         
+        }
+    }); 
+  var listAllAddress = ""; 
+  $.each(inBounds,function(index,val){
+  	listAllAddress = listAllAddress + '<div class = address_list>'+ val+'</div>'
+  	//	$("body").find("img.leaflet-marker-icon").css({"height":"auto","width":"auto"});
+  })
+  $("#coordinates").empty();
+  $("#coordinates").ap

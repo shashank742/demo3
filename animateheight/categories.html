@@ -1,0 +1,117 @@
+<html>
+	<head>
+		
+		<link rel="stylesheet" type="text/css" href="assets/css/global.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
+		<style>
+		
+			
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class = "parent">
+			<div class = "animateWrapper ">
+			<div class = "animate" >
+				<div class = "child">
+					
+				</div>
+			</div>
+			<div class = "slider">
+				<div>asflhqfoasfafasfafaf</div>
+			</div>
+			</div>
+			
+			<div class = "animateWrapper ">
+			<div class = "animate" >
+				<div class = "child">
+					
+				</div>
+			</div>
+			<div class = "slider">
+				<div>asflhqfo</div>
+			</div>
+			</div>
+			<div class = "animateWrapper ">
+			<div class = "animate" >
+				<div class = "child"></div>
+			</div>
+			<div class = "slider">
+				<div>asflhqfo</div>
+			</div>
+			</div>
+			<div class = "animateWrapper ">
+			<div class = "animate" >
+				<div class = "child"></div>
+			</div>
+			<div class = "slider">
+				<div>asflhqfo</div>
+			</div>
+			</div>
+			<div class = "animateWrapper ">
+			<div class = "animate" >
+				<div class = "child"></div>
+			</div>
+			<div class = "slider">
+				<div>asflhqfo</div>
+			</div>
+			</div>
+			<div class = "animateWrapper">
+			<div class = "animate" >
+				<div class = "child"></div>
+			</div>
+			<div class = "slider">
+				<div>aso</div>
+			</div>
+			</div>
+			
+		</div>
+		<script>
+		var i=-1;
+	var bool = false;
+			
+			animation()
+			
+		
+		function animation(){
+				
+			i++;
+		console.log(i)
+		var inde = i+100;
+		//$(".animate").eq(i).css({"z-index":inde});
+			$(".animateWrapper").eq(i).find(".animate").animate({width:"800px",height:"550",top:"0%",bottom:"0%"},200,function(){
+			
+				$(".animateWrapper").eq(i).find(".child").animate({height:"100%",bottom:"0"},600,function(){
+					
+					
+					if($(".animateWrapper").length == i+1){
+						
+				
+					// i=-1;
+					// $(".animate").css({"height":"50px","width":"50px"});
+					// $(".child").css({"height":"0","width":"50%"});
+// 					
+// 			
+					// setTimeout(function(){
+						// animation();
+					// },2000)
+						
+							}else{
+								setTimeout(function(){
+						animation();
+					},1000)
+							}
+								
+				})
+				
+				
+				$(".animateWrapper").eq(i).find(".slider").css({"z-index":inde});
+				
+					})
+			
+			
+		}
+		
+		</script>
+	</body>
+</html>

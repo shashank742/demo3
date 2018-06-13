@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	</head>
+<body>
+
+
+
+
+
+<p id="demo"></p>
+
+<script>
+     $(document).ready(function(){
+     	 var images = ["sanckoacvn","jbqadkjq","qws","askd","qwdm","dc","jewq","ioj","ikwef","powed","we","3","4","dsaf","3rg","f","wef","34","3wef","rf","we","4r","qewr","we","qw"];
+     	setInterval(function(){
+     		var i=0;
+var k=0;
+
+        var arr=[];
+        var arr2=[];
+        var range = 4;
+        var range2 = 24;
+        var storeIndex=[];
+       
+     	var 	randomCalling = Math.floor((Math.random() * range) + 0);
+       
+       function loop(x) {
+         demo(randomCalling);
+        }
+        loop(0);
+        
+         function demo(index){
+             i++;
+           
+           var src = (Math.floor((Math.random() * range2) + 0));
+                 arr.push(images[src]);
+                 storeIndex.push(arr);
+               images.splice(src, 1);
+               images.splice(src, 0, "Kiwi");
+               //console.log(imagesrc)
+               console.log(images);         
+ if(i <index){ 	
+                 demo(index)
+                }          
+             //console.log(i)          
+         }       
+     	},3000)
+
+     });
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

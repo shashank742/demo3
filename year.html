@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>HTML</title>
+		<meta name="description" content="">
+		<meta name="author" content="sis191">
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<style>
+			div{
+				float:left;
+				margin-top:150px;
+				position:relative;
+				padding-left:10px;
+				
+			}
+			.years{
+				padding:0px 8px;
+				padding-top:0;				
+				border:1px solid black;				
+				border-right:none;
+				padding-bottom:5px;
+			}
+			div:after{
+				position:absolute;				
+				left:0px;	
+				font-size:20px;			
+			}
+			.year15:after{
+				content:"2015";
+				bottom:-25px;
+				
+			}
+			.year16:after{
+				content:"2016";
+				bottom:-25px;
+			}
+			.year17:after{
+				content:"2017";
+				bottom:-25px;
+			}
+			.year18:after{
+				content:"2018";
+				bottom:-25px;
+			}
+            .year19:after{
+				content:"2019";
+				bottom:-25px;
+			}
+			.month{
+				position:relative;
+				padding:0px 8px;
+			}
+			/*.contents{
+				position:relative;
+			}*/
+			/*.contents:before{
+				position:absolute;
+				content:"";
+				border-radius:50%;
+				border:1px solid black;
+				height:30px;
+				width:30px;
+				margin-left:-25px;
+				margin-top:-3px;
+			}*/
+			.contents{
+				position:absolute;
+				content:"";
+				width:1px;
+				height:200px;
+				background-color:#000000;
+				bottom:100%;
+				right:100%;
+			}
+			
+			.content1{
+				position:absolute;
+				bottom:90%;
+				left:10px;
+			}
+			.content2{
+				position:absolute;
+				bottom:80%;
+				left:10px;
+			}
+			.conts{
+				top:100%;
+				margin-top:10px;
+			}
+			.cont1{
+				top:80%;
+			}
+			.cont2{
+				top:90%;
+			}
+		</style>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class ="years year15">
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+			</div>
+			<div class ="years year16">
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+			</div>
+			<div class ="years year17">
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+			</div>
+			<div class ="years year18">
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+			</div>
+			<div class ="years year19">
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+				<span class="month">|</span>
+			</div>
+		</div>
+		
+		<script>
+		$(document).ready(function(){
+		 var myData="";	
+			
+		$.ajax({
+  type: "POST",
+  url: "monthdata.json",
+   dataType:"json",
+  success: function(data){ 
+   myData=JSON.stringify(data)
+   // console.log(myData) 
+       demo(data); 
+  },error:function(err){
+  	console.log('err')
+  	console.log(err)
+  }  
+});
+var counter=0;
+function demo(data){
+	//console.log(data.year[0].month[0].month_id)
+	$.each(data.year,function(key,val){
+		//console.log(key)
+		$.each(val.month,function(key2,val2){
+			console.log(val2)
+			var monthContent = val.month[0].month_id-1;
+				var text = val.month[0].month_content;
+				var textHeading = val.month[0].month_heading;
+			if((val.month[1].month_heading!="")){
+				
+			
+			//console.log(key2)
+			
+		var monthContent2 = val.month[1].month_id-1;
+	
+		var text2 = val.month[1].month_content;
+		
+		var textHeading2 = val.month[1].month_heading;
+		//console.log(textHeading2)
+		
+		
+			
+			counter++;
+			//console.log(counter)
+			}
+			
+		$(".years").eq(key).find(".month").eq(monthContent).append('<span class="contents"><span class="content1">'+text+'</span><span class="content2">'+textHeading+'</span></span>')
+	    $(".years").eq(key).find(".month").eq(monthContent2).append('<span class="contents conts"><span class="content1 cont1">'+text2+'</span><span class="content2 cont2">'+textHeading2+'</span></span>')
+		})
+	
+		
+		
+	})
+}
+
+
+		})
+		 
+			
+		</script>
+	</body>
+</html>

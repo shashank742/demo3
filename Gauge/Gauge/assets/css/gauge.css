@@ -1,0 +1,33 @@
+#gaugeContainer {
+    position: relative;
+    width:500px;
+}
+#meter {
+    width: 100%; height: 100%;
+    transform: rotateX(180deg);
+}
+.circle {
+    fill: none;
+}
+#meter_needle {
+    height: 170px;
+    left: -85px;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 30%;
+     transform-origin: bottom center;
+    transform: rotate(453deg);
+}
+.background{
+    background:red;
+}
+.overlayCircle{transform: rotateZ(270deg);transform-origin: center;}
+.range.fullrange{stroke:#8bc53f !important;}
+.range.middlerange{stroke:#86ae3f !important;}
+.meter_needle1{
+    transform-origin: center;
+    transform: rotateZ(180deg) translate(222px,-89px);
+    left: 0;
+    position: relative;
+}

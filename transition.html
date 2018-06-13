@@ -1,0 +1,184 @@
+<html>
+	<head>
+		<style>
+			/*div {
+  border: 15px solid #000;
+  height: 90px;
+  margin: auto;
+  position: relative;
+  -webkit-transition: opacity 1.5s ease;
+  transition: opacity 1.5s ease; 
+  width: 300px;
+}*/
+
+/*div{
+  height: 180px;
+  opacity: 0;
+  -webkit-transition: all 1.5s ease;
+  transition: all 1.5s ease; 
+  width: 300px;
+}*/
+/*.div{
+  height: 180px;
+  opacity: 1;
+  -webkit-transition: all 1.5s ease;
+  transition: all 1.5s ease; 
+  width: 300px;
+}*/
+/*div:after {
+  content: 'gaetanbt.com';
+  position: absolute;
+  bottom: -40px;
+  color: #b5404a;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  font-family: Arial;
+}*/
+
+body {background:#f2f2f2;}
+div{
+	margin-left:100px;
+	margin-bottom:100px;
+	margin-top:50px;
+}
+table{
+	margin-left:50px;
+}
+.tick span{
+	display:inline-block;
+	height:30px;
+	width:30px;
+}
+.black{
+	
+	background-color:black;
+}
+.white{
+	
+	background-color:white;
+}
+td{
+	height:50px;
+	width:50px;
+	background-color:red;
+}
+		</style>
+		<body>
+			<div class ="tick">
+				<span class= "black"></span>
+				<span class= "white"></span>
+			</div>
+			
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		
+			<script>
+			
+			
+			var rows = 3;
+            var column = 3;
+function make_id(row, col) {
+   return "cellid-" + row + '-' + col;
+}
+
+function init() {
+   var body = $('<tbody />');
+
+   for (var row = 0; row < rows; row++) {
+      var tr = $('<tr />').appendTo(body);
+      for (var col = 0; col < column; col++) {
+         var check = $('<input type="text" />');
+         var td = $('<td />').appendTo(tr);
+         check.attr('id', make_id(row, col));
+         check.data('row', row);
+         check.data('col', col);
+         check.click(function () {
+            var r = $(this).data('row');
+            var c = $(this).data('col');
+            $('#' + make_id(c, r)).attr('checked', $(this).attr('checked'));
+         });
+      }
+   }
+
+   $('body').append($('<table />').append(body));
+}
+
+$(init);
+// 			
+			// var p = {"p1":"1","p2":"3","p3":"5"};
+         // for(j in p){
+            // alert(j);
+            // alert(p[j]);
+         // }
+		// $(document).keydown(function(event){
+// 			
+			// console.log((event.which == 9))
+// 			
+		// })
+				// $("body").click(function(){
+// 			
+				// $("div").toggleClass("div");
+// 					
+				// })
+				var a=0;
+				var c = 0;
+				var bool = false;
+				$(".tick span").click(function(){
+					alert($(this).css("background-color"))
+				})
+				
+					var arr1 =  [];
+					var arr2 = [];
+					$("body").on("click","td",function(){
+				    
+					//alert($(this).index());
+					if($(this).hasClass("white") || $(this).hasClass("black")){
+						alert("Can not click on clicked box")
+					}
+					else{
+						
+					
+					if(c%2 == 0){
+						
+					
+					$(this).addClass("black");
+					$(".tick .black").css("display","none");
+					$(".tick .white").css("display","block");
+					arr1.push($(this).index());
+				
+					console.log("black = "+arr1);
+					}
+					if(c%2 !=0){
+					 $(this).addClass("white");
+					 $(".tick .white").css("display","none");
+					 $(".tick .black").css("display","block");	
+					 arr2.push($(this).index());
+					 console.log("white = " + arr2)
+					}
+					if(c>3){
+						
+						for(var i=0; i<arr1.length; i++){
+							if(arr1[i]  != arr1[0]){
+								
+							
+							}else{
+								bool=true;
+							}
+						}
+					}
+					c++;
+					if(bool){
+					a++;
+								console.log(a)
+					}
+					
+					
+					
+					
+				}
+					
+				})
+			</script>
+		</body>
+	</head>
+</html>

@@ -1,0 +1,169 @@
+<html>
+	<head>
+	<style>
+		#gentags {
+position:relative;
+margin-top: -.25em;
+display: inline-block;
+width: 100%;
+overflow-x: scroll;
+overflow-y: hidden;
+}
+
+#gentags > div{
+    overflow: hidden;
+    width:400%;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.horizontal_scroll .full_screen_100 article{
+    width: 10.58%;
+    height: 100%;
+    float:left;
+    border-left: solid 1px #E2E2E2;
+    background-color: rgba(23, 125, 244, 0.8);
+
+}
+.active{
+    display: block !important;
+}
+.about_menu{
+position: fixed;
+width: 100%;
+text-align: center;
+display: none;
+}
+    .about_menu .about_menu_wrapper ul.about_menu_list{
+        list-style: none;
+        text-decoration: none;
+    }
+
+    .about_menu .about_menu_wrapper ul.about_menu_list li{
+        display: inline-block;
+        text-decoration: none;
+        margin: 10px;
+    }
+    .about_menu .about_menu_wrapper ul.about_menu_list li a{
+    font-size: 18px;
+    color: red
+    }
+
+.about_menu .about_menu_wrapper ul.about_menu_list li a:hover{
+    color: #000;
+        }
+	</style>
+			<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+	</head>
+	<body>
+		
+
+<div class="about_menu">
+    <div class="about_menu_wrapper">
+        <ul class="about_menu_list">
+            <li><a href="">About  us</a></li>
+           <li><a href="">Team</a></li>
+           <li><a href="">Clients</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="gentags">
+   <div class="horizontal_scroll">
+        <div class="full_screen_100" id="left_scroll">
+            <article><div><p class="scroll_number" id="scroll_1">01</p><span class="page_slogan1" id="scroll_text_1">Lorem ipsum dolor sit amet, </span></div></article>
+            <article><div><p class="scroll_number" id="scroll_2">02</p><span class="page_slogan" id="scroll_text_2">Lorem ipsum dolor sit amet, </span></div></article>
+      
+            <article><div><p class="scroll_number">03</p><span class="page_slogan">Lorem ipsum dolor sit amet, </span></div></article>
+            <article class="animate_1"><div><p class="scroll_number">04</p><span class="page_slogan">Lorem ipsum dolor sit amet, </span></div></article>
+            <article class=" active_05"><div><p class="scroll_number">05</p><span class="page_slogan">Lorem ipsum dolor sit amet, </span></div></article>
+ <article><div><p class="scroll_number">06</p><span class="page_slogan">Lorem ipsum dolor sit amet, </span></div></article>
+            <article><div><p class="scroll_number">07</p><span class="page_slogan">Lorem ipsum dolor sit amet, </span></div></article>
+            <article class=" active_05"><div><p class="scroll_number">08</p><span class="page_slogan">Lorem ipsum dolor sit amet, </span></div></article>
+            <article><div><p class="scroll_number">09</p><span class="page_slogan">Lorem ipsum dolor sit amet, </span></div></article>
+     </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/plugins/ScrollToPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/plugins/CSSPlugin.min.js"></script>
+<script>
+	 (function() {
+  var content = document.getElementById("gentags"); // container of scrollable content
+  var xScroll = 0;  // initialize virtual scroll position
+  var ignore = false; // ignore flag, decides whether xScroll needs to be updated (user scrolls via scrollbar) or not (user scrolls via mousewheel)
+    function scrollHorizontally(e) {
+        // every browser gives another e.deltaY -> only get the current direction and set an own speed
+            var direction = (e.deltaY>0) ? 1 : -1;
+        xScroll = xScroll+direction*120; // calculate new virtual scroll positon -> scroll position at the end of animation
+        // set limits to avoid overshooting and stucking at beginning or end
+        var max = content.scrollWidth - content.clientWidth;
+          if (xScroll <= 0) {
+              xScroll = 0;
+          } else if (xScroll >= max) {
+              xScroll = max;
+          }
+        ignore = true; // user scrolls via mousewheel -> block updates of xScroll until animation ahs finished
+        // scroll smooth to xScroll
+        TweenLite.to(content, 1, { ease: Power1.easeOut, scrollTo:{x:xScroll} });
+        
+        e.preventDefault();
+    }
+    function updateXScroll(e) {
+        if (xScroll == content.scrollLeft) {
+          // scroll animation has finished -> reset ignore flag -> xScroll will be updated again
+          ignore = false;
+        }
+        if (!ignore) {
+          // if scroll event was NOT fired by mousewheel, update xScroll
+          xScroll = content.scrollLeft;
+        }
+        
+        var rt = ($(window).width() - ($(".active_05").offset().left ));
+        if(rt>200)
+        {
+          $(".about_menu").addClass("active");
+        }
+        else
+        {
+                    
+        $(".about_menu").removeClass("active");
+        }
+    }
+   if (content.addEventListener) {
+        // Standard
+        content.addEventListener("scroll", updateXScroll, false); // update xScroll at scrollbar scrolls
+        content.addEventListener("wheel", scrollHorizontally, false); // make smooth scroll animation when srolling via mousewheel
+    } else {
+        // IE 6/7/8
+        content.attachEvent("onmousewheel", scrollHorizontally);
+    }
+//     var header_text_1=document.getElementById("scroll_1");
+//     TweenLite.from(header_text_1, .5, { ease: Power0.easeOut, y: 10 });
+    
+//     var header_text_2=document.getElementById("scroll_2");
+//     TweenLite.from(header_text_2, .5, { ease: Power0.easeOut, y: 10 });
+      
+    $('article').each(function(index, elem){
+      var controller = new ScrollMagic.Controller({vertical: false});
+      var tween = TweenMax.fromTo($(elem), 0.5, {scale: 0.5, yPercent: 100}, {scale: 1, yPercent: 0});
+      var scene = new ScrollMagic.Scene({triggerElement: elem})
+      .setTween(tween)
+      .addIndicators()
+      .addTo(controller);
+    });
+      
+   
+})();
+</script>
+
+	</body>
+</html>

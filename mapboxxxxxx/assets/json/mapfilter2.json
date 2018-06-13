@@ -1,0 +1,237 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {         
+        "title":"100 Williams Street11111767",   
+        "type": "blue",
+        "status": "known",
+        "attr": "12",       
+        "icon": {
+       "iconUrl": "assets/images/blue.png"  ,
+       "iconUrlHover":"assets/images/blue.png" 
+            
+      }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.12911152370515,
+          38.79930767201779
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {     
+        "title":	"100 Williams Streetsdgwsfg2",
+        "type": "blue",
+        "status": "known",
+        "attr": "01",       
+        "icon": {
+       "iconUrl": "assets/images/blue.png",
+       "iconUrlHover":"assets/images/blue.png"     
+      }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.16797018042666,
+          38.766521892689916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title":	"100 Williams Street3wetgwertg",
+
+        "type": "blue",
+        "status": "known",   
+        "attr": "02",      
+        "icon": {
+       "iconUrl": "assets/images/blue.png",
+       "iconUrlHover":"assets/images/blue.png"       
+      }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01586821694521,
+          38.885072355144786
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title":	"100 Williams Street4",
+        "id": "marker-hr6td3dua3",
+        "type": "blue",
+        "status": "known", 
+        "attr": "03",      
+        "icon": {
+        "iconUrl": "assets/images/red.png",
+        "iconUrlHover":"assets/images/blue.png"      
+      }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01663895662587,
+          38.896090317663166
+        ]
+      }
+    },
+    
+    {
+      "type": "Feature",
+      "properties": {
+        "title":	"100 Williams Street5",
+        "type": "blue",
+        "status": "known",
+        "attr": "04",      
+        "icon": {
+        "iconUrl": "assets/images/red.png",
+        "iconUrlHover":"assets/images/blue.png"       
+      }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05241802079871,
+          38.92508513710051
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+         "title":	"100 Williams Street6",
+         "type": "blue",
+         "status": "unknown",
+         "attr": "05",       
+         "icon": {
+         "iconUrl": "assets/images/green.png",
+         "iconUrlHover":"assets/images/blue.png"        
+      }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02190848409535,
+          38.88483772791197
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { 
+         "title":	"100 Williams Street7",    
+        "type": "blue",
+        "status": "unknown",
+        "attr": "06",       
+        "icon": {
+         "iconUrl": "assets/images/blue.png",
+         "iconUrlHover":"assets/images/blue.png"     
+      }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02806623428602,
+          38.888018702051426
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title":	"100 Williams Street8",
+        "type": "blue",
+        "status": "unknown",
+        "attr": "07",      
+        "icon": {
+        "iconUrl": "assets/images/blue.png",
+        "iconUrlHover":"assets/images/blue.png"     
+      }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.05953892154457,
+          38.86188238675449
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {      
+        "title":	"100 Williams Street9",
+        "type": "blue",
+        "status": "unknown",
+        "attr": "08",      
+        "icon": {
+        "iconUrl": "assets/images/blue.png",
+        "iconUrlHover":"assets/images/blue.png"       
+      }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02813199840536,
+          38.89318087185462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title":	"100 Williams Street10",
+        "type": "blue",
+        "status": "unknown",
+        "attr": "09",      
+        "icon": {
+        "iconUrl": "assets/images/green.png",
+        "iconUrlHover":"assets/images/blue.png"      
+      }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.02191438799919,
+          38.89366522352208
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {    
+       "title":	"100 Williams Street11",
+       "type": "blue",
+       "status": "unknown",
+       "attr": "10",      
+       "icon": {
+       "iconUrl": "assets/images/green.png",
+       "iconUrlHover":"assets/images/blue.png"   
+      }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.01750520880347,
+          38.87646186689611
+        ]
+      }
+    }
+    
+  ]
+}
+

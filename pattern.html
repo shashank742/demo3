@@ -1,0 +1,31 @@
+<html>
+	<head>
+	
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id= "pattern"></div>
+		
+		<script>
+		var c=1;
+			for(var i=1; i<=7; i++){
+				
+				$("#pattern").append("<div class='"+i+"'></div>");
+				for(var j=1; j<=i; j++){
+				
+						$("."+i).append("<span></span>")
+					if(j>1)
+					c=j+c+1;
+					console.log(c);
+					
+				$("#pattern div").eq(i-1).find("span").eq(j-1).html("  "+c);
+						
+					  
+				
+				}
+				
+				c=c+2;		
+			}
+		</script>
+	</body>
+</html>

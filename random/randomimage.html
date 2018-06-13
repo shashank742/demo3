@@ -1,0 +1,109 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<p id ="demo"></p>
+<table></table>
+<script>
+
+$(document).ready(function(){
+var showImg=[1,2,3,4,5];
+var images = ["6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"];
+var i=0;
+var showImgHold=[];
+var imagesHold=[];
+var showImgHoldstoreIndex=[];
+var j=0;
+
+setInterval(function(){
+
+ i=0;
+ console.log(showImg)
+ 
+
+
+ console.log(images)
+ // console.log(showImgHold)
+ // console.log(imagesHold)
+
+showImgHold=[];
+ imagesHold=[];
+showImgHoldstoreIndex=[];
+
+callNo = Math.floor((Math.random()*4)+0);
+//alert(callNo)
+function loop(x){
+demo(callNo);
+}
+loop(0);
+},3000)
+function demo(index){
+i++;
+var imgSrc = Math.floor((Math.random()*(5-i))+0);
+
+var src = Math.floor((Math.random()*(25-i))+0);
+
+showImgHold[i-1]={'key':imgSrc,'val':showImg[imgSrc]};
+    imagesHold[i-1]={'key':src,'val':images[src]};
+
+
+images.splice(src,1);
+showImg.splice(imgSrc,1);
+
+/*holdArray = images[src];
+images[src]=showImg[imgSrc];
+showImg[imgSrc]=holdArray;*/
+//console.log(images)
+//console.log(showImg)
+//alert()
+
+
+
+
+
+/*
+arr.push(images[src]);
+console.log(showImg[imgSrc])
+arr2.push(showImg[imgSrc]);
+storeIndex.push(arr);
+images.splice(imgSrc,1);
+
+//console.log(swap)
+var swap1=showImg.splice(src,1);
+images.splice(imgSrc,0,showImg[imgSrc]);
+
+showImg.splice(src,0,images[src]);
+console.log(images);*/
+if(i<index){
+demo(index);
+}else{
+j=0;
+$('table').append("<tr></tr>")
+setArr(index)
+}
+}
+function setArr(index){
+var holdval=images[imagesHold[j]];
+    images.splice(imagesHold[j]['key'], 0, showImgHold[j]['val'])
+    showImg.splice(showImgHold[j]['key'], 0, imagesHold[j]['val'])
+    //showImg.splice(showImgHold[j], 0,  showImgHold[j]['val'])
+
+//images[imagesHold[j]]=showImg[showImgHold[j]]
+//showImg[showImgHold[j]]=holdval;
+j++;
+if(j<index){
+setArr(index)
+}else{
+	for(k=0;k<showImg.length;k++){ 
+ 	$('table tr:last-child').append("<td>"+showImg[k]+"</td>")
+ 	
+ }
+ $('table tr:last-child').append("<td>"+j+"</td>")
+}
+}
+
+});
+</script>
+</body>
+</html>

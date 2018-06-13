@@ -1,0 +1,50 @@
+<html>
+	<head>
+		
+		
+		<style>
+		
+
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>
+	<body >
+<input placeholder="Select Date" class="textbox-n" type="text" name="demo_date" onfocus="(this.type='date')" id="demo_date">
+		<script>
+		$(function() {
+  var dtToday = new Date();
+
+  var month = dtToday.getMonth() + 1;
+  var day = dtToday.getDate();
+  var year = dtToday.getFullYear();
+ 
+ 
+  if (month < 10)
+    month = '0' + month.toString();
+  if (day < 10)
+    day = '0' + day.toString();
+
+  var maxDate = year + '-' + month + '-' + day;
+  //console.log(maxDate);
+ 
+   var time = new Date().toLocaleTimeString();
+  if (time >= '12:00:00 PM') {
+ day = day+1
+ maxDate = year + '-' + month + '-' + day;
+    // code for disable demo_date
+  }
+ 
+  
+  
+  $('#demo_date').attr('min', maxDate);
+  $('#demo_date').attr('max', '2018-04-29');
+});
+<!-- disable past date -->
+
+<!-- disable date by time -->
+$(document).ready(function() {
+ 
+});
+		</script>
+	</body>
+</html>
